@@ -4,11 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Watchlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
     <header>
-      <h1>Hello, World</h1>
+      <div class="container">
+        <nav class="nav-wrapper">
+          <h1 class="nav-heading">Find your film</h1>
+          <a href="watchlist.html" class="nav">My Watchlist</a>
+        </nav>
+        <form id="film-form" class="film-search">
+          <input
+            type="search"
+            id="film-input"
+            class="film-input"
+            placeholder="Search for a movie..."
+            name="q"
+            aria-label="Search for a movie"
+          />
+          <button type="submit">Search</button>
+        </form>
+      </div>
     </header>
     <main>
       <section></section>
