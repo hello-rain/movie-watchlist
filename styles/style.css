@@ -1,0 +1,26 @@
+/* 0. Root Properties */
+
+/* 1. Reset */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/* 2. Reset default margin, padding, and font inheritance */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 2. General Styles */
+
+/* 3. Components */
+
+/* 4. Utility Classes */
