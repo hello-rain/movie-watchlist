@@ -1,4 +1,27 @@
 /* 0. Root Properties */
+:root {
+  --clr-neutral-1000: hsl(0, 0%, 0%);
+  --clr-neutral-900: hsl(0, 0%, 21%);
+  --clr-neutral-800: hsl(217, 19%, 27%);
+  --clr-neutral-400: hsl(220, 9%, 46%);
+  --clr-neutral-200: hsl(0, 3%, 87%);;
+  --clr-neutral-100: hsl(0, 0%, 100%);
+
+  --ff-primary: "Inter", sans-serif;
+
+  --ff-body: var(--ff-primary);
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-extra-bold: 800;
+
+  --fs-100: 0.75rem;
+  --fs-200: 0.875rem;
+  --fs-300: 1rem;
+  --fs-400: 1.125rem;
+  --fs-500: 2.625rem;
+}
 
 /* 1. Reset */
 *,
