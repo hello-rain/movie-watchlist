@@ -36,12 +36,19 @@
               aria-label="Search for a movie"
             />
           </div>
-          <button type="submit">Search</button>
+          <button type="submit" class="btn">Search</button>
         </form>
       </div>
     </header>
     <main>
       <section>
+        <h2 class="sr-only">Search Results</h2>
+        <div class="film-results-container" aria-live="polite">
+          <div class="empty-result-state">
+            <img src="assets/icons/explore.svg" alt="" aria-hidden="true" />
+            <p>Start exploring</p>
+          </div>
+        </div>
       </section>
     </main>
     <footer></footer>
