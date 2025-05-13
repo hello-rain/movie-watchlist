@@ -4,7 +4,7 @@
   --clr-neutral-900: hsl(0, 0%, 21%);
   --clr-neutral-800: hsl(217, 19%, 27%);
   --clr-neutral-400: hsl(220, 9%, 46%);
-  --clr-neutral-200: hsl(0, 3%, 87%);;
+  --clr-neutral-200: hsl(0, 3%, 87%);
   --clr-neutral-100: hsl(0, 0%, 100%);
 
   --ff-primary: "Inter", sans-serif;
@@ -43,6 +43,11 @@ a {
 }
 
 /* 2. General Styles */
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-200);
+  line-height: 1.5;
+}
 
 /* 3. Components */
 
