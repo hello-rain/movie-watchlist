@@ -50,11 +50,37 @@ body {
 }
 
 /* 3. Components */
+.primary-header {
+  position: relative;
+  background-color: #121212;
+  color: var(--clr-neutral-100);
+}
+
+.primary-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/images/bg.png");
+  background-position: center 25%;
+  background-size: cover;
+  opacity: 20%;
+}
 
 /* 4. Utility Classes */
 
 .container {
+  position: relative;
   width: 550px;
   height: 208px;
+  padding: 0 1.5em;
   margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
