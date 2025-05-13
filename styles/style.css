@@ -52,3 +52,9 @@ body {
 /* 3. Components */
 
 /* 4. Utility Classes */
+
+.container {
+  width: 550px;
+  height: 208px;
+  margin-inline: auto;
+}
