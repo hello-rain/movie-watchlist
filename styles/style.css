@@ -50,10 +50,10 @@ body {
 }
 
 /* 3. Components */
+/* Header */
 .primary-header {
   position: relative;
   background-color: #121212;
-  color: var(--clr-neutral-100);
 }
 
 .primary-header::before {
@@ -66,21 +66,31 @@ body {
   opacity: 20%;
 }
 
+.nav-wrapper {
+  color: var(--clr-neutral-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-heading {
+  font-size: var(--fs-500);
+  font-weight: var(--fw-extra-bold);
+}
+
+.nav-link {
+  font-weight: var(--fw-bold);
+}
+
 /* 4. Utility Classes */
 
 .container {
   position: relative;
   width: 550px;
   height: 208px;
-  padding: 0 1.5em;
-  margin-inline: auto;
+  padding: 0 2.5em;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
-.nav-wrapper {
-  display: flex;
-  justify-content: space-between;
-}
-
