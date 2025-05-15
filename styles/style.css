@@ -4,7 +4,8 @@
   --clr-neutral-900: hsl(0, 0%, 21%);
   --clr-neutral-800: hsl(217, 19%, 27%);
   --clr-neutral-400: hsl(220, 9%, 46%);
-  --clr-neutral-200: hsl(0, 3%, 87%);
+  --clr-neutral-300: hsl(0, 3%, 87%);
+  --clr-neutral-200: hsl(210, 20%, 98%);
   --clr-neutral-100: hsl(0, 0%, 100%);
 
   --ff-primary: "Inter", sans-serif;
@@ -67,6 +68,7 @@ body {
 }
 
 .nav-wrapper {
+  padding-top: 3em;
   color: var(--clr-neutral-100);
   display: flex;
   justify-content: space-between;
@@ -82,15 +84,61 @@ body {
   font-weight: var(--fw-bold);
 }
 
+.nav-link:hover {
+  color: var(--clr-neutral-300);
+}
+
+.film-search {
+  position: relative;
+  bottom: -3.5em;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1em;
+}
+
+.film-input,
+.btn {
+  border: 1px solid var(--clr-neutral-300);
+}
+
+.film-input {
+  width: 100%;
+  padding: 0.5em 0 0.5em 3em;
+  border-radius: 6px 0 0 6px;
+}
+
+.btn {
+  padding: 0.5em 2em;
+  border-radius: 0 6px 6px 0;
+  background-color: var(--clr-neutral-200);
+}
+
+.btn:hover {
+  background-color: var(--clr-neutral-300);
+  cursor: pointer;
+}
+
 /* 4. Utility Classes */
 
 .container {
   position: relative;
-  width: 550px;
-  height: 208px;
-  padding: 0 2.5em;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 550px;
+  height: 208px;
+  padding: 0 3em;
 }
