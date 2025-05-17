@@ -25,6 +25,7 @@
 }
 
 /* 1. Reset */
+/* 1. Use a more intuitive box-sizing model */
 *,
 ::before,
 ::after {
@@ -43,18 +44,41 @@ a {
   color: inherit;
 }
 
+/* 4. Set core defaults */
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  line-height: 1.5; /* Improve readability */
+  text-rendering: optimizeSpeed; /* Enhance text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* 2. General Styles */
+
 body {
   font-family: var(--ff-body);
   font-size: var(--fs-200);
-  line-height: 1.5;
 }
 
 /* 3. Components */
+
 /* Header */
+
 .primary-header {
   position: relative;
-  background-color: #121212;
+  background-color: var(--clr-neutral-1000);
 }
 
 .primary-header::before {
@@ -68,16 +92,16 @@ body {
 }
 
 .nav-wrapper {
-  padding-top: 3em;
-  color: var(--clr-neutral-100);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 3em;
+  color: var(--clr-neutral-100);
 }
 
 .nav-heading {
-  font-size: var(--fs-500);
   font-weight: var(--fw-extra-bold);
+  font-size: var(--fs-500);
 }
 
 .nav-link {
@@ -88,12 +112,13 @@ body {
   color: var(--clr-neutral-300);
 }
 
+/* Search */
 .film-search {
   position: relative;
   bottom: -3.5em;
   display: flex;
-  width: 100%;
   margin: 0 auto;
+  width: 100%;
 }
 
 .search-input-wrapper {
@@ -111,6 +136,7 @@ body {
 .film-input,
 .btn {
   border: 1px solid var(--clr-neutral-300);
+  font-weight: var(--fw-medium);
 }
 
 .film-input {
@@ -128,6 +154,27 @@ body {
 .btn:hover {
   background-color: var(--clr-neutral-300);
   cursor: pointer;
+}
+
+/* Main */
+
+.empty-result-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.explore-icon {
+  width: fit-content;
+}
+
+.state-message {
+  width: 320px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-400);
+  text-align: center;
+  color: var(--clr-neutral-300);
 }
 
 /* 4. Utility Classes */
