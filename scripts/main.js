@@ -41,7 +41,7 @@ function renderError(message) {
 
 // 4. Helper/utility functions
 
-// Fetch film data from OMDB API based on user input
+// Fetch a list of films from OMDb API based on user search input
 async function fetchFilms(filmInput) {
   try {
     // Make a request to the OMDB API with the search query
@@ -68,5 +68,27 @@ async function fetchFilms(filmInput) {
     const message = "Error fetching data.";
     renderError(message);
     console.error(error);
+  }
+}
+
+// Fetch full details for a single film by IMDb ID
+async function fetchFilmDetail(filmID) {
+  try {
+    const response = await fetch(
+      `http://www.omdbapi.com/?apikey=efde29a&i=${filmID}`
+    );
+    if (!response.ok) {
+      const message = "Network response was not ok";
+      renderError(message);
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    const message = "Error fetching data.";
+    renderError(message);
+    console.log(error);
   }
 }
