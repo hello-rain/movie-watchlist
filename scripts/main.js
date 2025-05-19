@@ -19,8 +19,6 @@ function handleFilmSearch(e) {
 // 3. Rendering/UI functions
 // Display detailed film information
 async function renderFilms(films) {
-  //   (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]0: {Title: 'Hello, My Name Is Doris', Year: '2015', imdbID: 'tt3766394', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BNDYwMmEwNm…TlmMmQtM2M3NTFmODQyOTAyXkEyXkFqcGc@._V1_SX300.jpg'}1: {Title: 'Hello, Dolly!', Year: '1969', imdbID: 'tt0064418', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BODk3MmYzOW…WJjM2EtMDEzZjc3NDYxYWI4XkEyXkFqcGc@._V1_SX300.jpg'}2: {Title: 'Hello Mini', Year: '2019–', imdbID: 'tt9454892', Type: 'series', Poster: 'https://m.media-amazon.com/images/M/MV5BNWMyNGRhZW…WFmNGUtMmJjYzExZWE3YTk2XkEyXkFqcGc@._V1_SX300.jpg'}3: {Title: 'Hello Ladies', Year: '2013–2014', imdbID: 'tt2378794', Type: 'series', Poster: 'https://m.media-amazon.com/images/M/MV5BNjYxMjI3MzY3NF5BMl5BanBnXkFtZTgwMTgyNzg3MDE@._V1_SX300.jpg'}4: {Title: 'Hello Mary Lou: Prom Night II', Year: '1987', imdbID: 'tt0093176', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BMWQxZjMwOD…WI2ZjYtZmZiNzE5NTEwOWFlXkEyXkFqcGc@._V1_SX300.jpg'}5: {Title: 'Hello Ladies: The Movie', Year: '2014', imdbID: 'tt3762944', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BNzc5MDE0MD…Tg0MGEtYjk4ODI5NWNkZmNmXkEyXkFqcGc@._V1_SX300.jpg'}6: {Title: 'Hello Tomorrow!', Year: '2023', imdbID: 'tt14596212', Type: 'series', Poster: 'https://m.media-amazon.com/images/M/MV5BODRjNDllYT…TgxYzctYzZlOTIzNjkxODRiXkEyXkFqcGc@._V1_SX300.jpg'}7: {Title: 'Hello I Must Be Going', Year: '2012', imdbID: 'tt2063666', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BMTRhNDY5Ym…WE5YjktNDdmOWI2Mzg1OTQwXkEyXkFqcGc@._V1_SX300.jpg'}8: {Title: 'Hello Ghost', Year: '2010', imdbID: 'tt1848926', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BZjkyNjZmMj…Tg3N2ItZDhmNTk2ZmUxMjMyXkEyXkFqcGc@._V1_SX300.jpg'}9: {Title: 'Hello Brother', Year: '1999', imdbID: 'tt0233856', Type: 'movie', Poster: 'https://m.media-amazon.com/images/M/MV5BNzZiZjZhY2…Tg2MDgtYmE2Mzk4Y2U5NDY2XkEyXkFqcGc@._V1_SX300.jpg'}length: 10[[Prototype]]: Array(0)
-
   // Fetch details for all films
   const filmDetails = await Promise.all(
     films.map((film) => fetchFilmDetail(film.imdbID))
@@ -84,11 +82,43 @@ async function fetchFilmDetail(filmID) {
     }
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     const message = "Error fetching data.";
     renderError(message);
     console.log(error);
   }
+}
+
+function generateFilmCardHTML(film) {
+  return `
+  <div class="film">
+    <img src="${film.Poster}" alt="${film.Title} poster" class="film-poster"/>
+    <div class="film-details">
+      <div class="film-header">
+        <h3 class="film-title">${film.Title}</h3>
+        <span class="film-meta">
+        <img src="assets/icons/rating.svg">
+        ${film.imdbRating}
+        </span>
+      </div>
+      <div class="film-meta-group">
+        <span class="film-meta">${film.Runtime}</span>
+        <span class="film-meta">${film.Genre}</span>
+        <button
+          type="button"
+          class="add-to-watchlist-btn"
+          aria-label="Add ${film.Title} to watchlist"
+          data-imdbid="${film.imdbID}"
+        >
+          <span class="add-to-watchlist-icon" aria-hidden="true">
+            <img src="assets/icons/watchlist-add.svg">
+          </span>
+          Watchlist
+        </button>
+      </div>
+      <p class="film-plot">${film.Plot}</p>
+    </div>
+  </div>
+`;
 }
