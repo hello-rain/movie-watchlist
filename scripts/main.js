@@ -7,6 +7,8 @@ document
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("read-more-btn")) {
     renderFullPlot(e);
+  } else if (e.target.classList.contains("add-to-watchlist-btn")) {
+    addToWatchlist(e);
   }
 });
 
@@ -19,6 +21,15 @@ function handleFilmSearch(e) {
   if (filmInput) {
     console.log(filmInput);
     fetchFilms(filmInput);
+  }
+}
+
+function addToWatchlist(e) {
+  const imdbID = e.target.getAttribute("data-imdbid");
+  const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+  if (!watchlist.includes(imdbID)) {
+    watchlist.push(imdbID);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
   }
 }
 

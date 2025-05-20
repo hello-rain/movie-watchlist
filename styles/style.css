@@ -176,10 +176,6 @@ section .container {
   gap: 1em;
 }
 
-.explore-icon {
-  width: fit-content;
-}
-
 .state-message {
   width: 320px;
   font-weight: var(--fw-bold);
