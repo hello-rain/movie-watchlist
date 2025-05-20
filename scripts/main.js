@@ -4,6 +4,12 @@ document
   .querySelector("#film-form")
   .addEventListener("submit", handleFilmSearch);
 
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("read-more-btn")) {
+    renderFullPlot(e);
+  }
+});
+
 // 2. Main handler/controller functions
 
 // Handle form submission for searching films
@@ -37,6 +43,13 @@ async function renderFilms(films) {
 function renderError(message) {
   document.querySelector(".films-container").innerHTML = `
   <p class="state-message">${message}</p>`;
+}
+
+function renderFullPlot(e) {
+  const plotEl = e.target.closest(".film-plot");
+  if (plotEl) {
+    plotEl.textContent = plotEl.getAttribute("data-fullplot");
+  }
 }
 
 // 4. Helper/utility functions
@@ -93,20 +106,24 @@ async function fetchFilmDetail(filmID) {
 }
 
 function generateFilmCardHTML(film) {
+  const charLimit = 130;
+  const isLong = film.Plot.length > charLimit;
+  const shortPlot = isLong ? film.Plot.slice(0, charLimit) + "..." : film.Plot;
+
   return `
   <div class="film">
     <img src="${film.Poster}" alt="${film.Title} poster" class="film-poster"/>
     <div class="film-details">
       <div class="film-header">
         <h3 class="film-title">${film.Title}</h3>
-        <span class="film-meta">
+        <span>
         <img src="assets/icons/rating.svg">
         ${film.imdbRating}
         </span>
       </div>
       <div class="film-meta-group">
-        <span class="film-meta">${film.Runtime}</span>
-        <span class="film-meta">${film.Genre}</span>
+        <span>${film.Runtime}</span>
+        <span>${film.Genre}</span>
         <button
           type="button"
           class="add-to-watchlist-btn"
@@ -119,7 +136,14 @@ function generateFilmCardHTML(film) {
           Watchlist
         </button>
       </div>
-      <p class="film-plot">${film.Plot}</p>
+      <p class="film-plot" data-fullplot="${film.Plot.replace(/"/g, "&quot;")}">
+      ${shortPlot}
+      ${
+        isLong
+          ? `<button class="read-more-btn" type="button">Read more</button> `
+          : ""
+      }
+      </p>
     </div>
   </div>
 `;
