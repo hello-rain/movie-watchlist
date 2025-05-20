@@ -29,11 +29,13 @@ async function renderFilms(films) {
     .map((film) => generateFilmCardHTML(film))
     .join("");
 
-  document.querySelector(".film-results-container").innerHTML = filmCardsHTML;
+  document.querySelector(".films-container").innerHTML = `
+  <div class="films">${filmCardsHTML}</div>
+  `;
 }
 
 function renderError(message) {
-  document.querySelector(".film-results-container").innerHTML = `
+  document.querySelector(".films-container").innerHTML = `
   <p class="state-message">${message}</p>`;
 }
 
