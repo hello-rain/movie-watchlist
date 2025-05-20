@@ -1,16 +1,18 @@
 // 1. Event listeners / entry point
 
-document
-  .querySelector("#film-form")
-  .addEventListener("submit", handleFilmSearch);
+function init() {
+  document
+    .querySelector("#film-form")
+    .addEventListener("submit", handleFilmSearch);
 
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("read-more-btn")) {
-    renderFullPlot(e);
-  } else if (e.target.classList.contains("add-to-watchlist-btn")) {
-    addToWatchlist(e);
-  }
-});
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("read-more-btn")) {
+      renderFullPlot(e);
+    } else if (e.target.classList.contains("add-to-watchlist-btn")) {
+      addToWatchlist(e);
+    }
+  });
+}
 
 // 2. Main handler/controller functions
 
@@ -159,3 +161,5 @@ function generateFilmCardHTML(film) {
   </div>
 `;
 }
+
+init();

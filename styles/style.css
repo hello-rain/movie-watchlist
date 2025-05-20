@@ -177,7 +177,7 @@ section .container {
 }
 
 .state-message {
-  width: 320px;
+  width: 350px;
   font-weight: var(--fw-bold);
   font-size: var(--fs-400);
   text-align: center;
@@ -242,6 +242,15 @@ section .container {
 .film-plot {
   font-size: var(--fs-200);
   color: var(--clr-neutral-400);
+}
+
+.redirect-to-movies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+
+  font-weight: var(--fw-extra-bold);
 }
 /* 4. Utility Classes */
 
