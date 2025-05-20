@@ -12,7 +12,6 @@
 
   --ff-body: var(--ff-primary);
 
-  --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
   --fw-extra-bold: 800;
@@ -164,10 +163,16 @@ section .container {
 }
 
 .films-container,
-.films-empty-state {
+.films-empty-state,
+.film-details {
   display: flex;
   flex-direction: column;
+}
+
+.films-container,
+.films-empty-state {
   align-items: center;
+  justify-content: center;
   gap: 1em;
 }
 
@@ -183,6 +188,65 @@ section .container {
   color: var(--clr-neutral-300);
 }
 
+.film:first-child {
+  margin-top: 2em;
+}
+
+.film {
+  display: flex;
+  gap: 1.5em;
+  padding: 2em 0;
+  border-bottom: 1.5px solid var(--clr-neutral-300);
+}
+
+.film-poster {
+  width: 100px;
+  height: 150px;
+}
+
+.film-details {
+  gap: 0.5em;
+  padding-top: 1em;
+}
+
+.film-header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.film-title {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-400);
+}
+
+.film-meta-group {
+  display: flex;
+  gap: 1.5em;
+  font-size: var(--fs-100);
+}
+
+.add-to-watchlist-btn {
+  display: flex;
+  gap: 0.5em;
+  border: none;
+  background: none;
+}
+
+.read-more-btn {
+  border: none;
+  background: none;
+}
+
+.add-to-watchlist-btn,
+.read-more-btn:hover {
+  cursor: pointer;
+}
+
+.film-plot {
+  font-size: var(--fs-200);
+  color: var(--clr-neutral-400);
+}
 /* 4. Utility Classes */
 
 .container {
