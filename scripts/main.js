@@ -139,7 +139,7 @@ function generateFilmCardHTML(film) {
         <span>${film.Genre}</span>
         <button
           type="button"
-          class="watchlist-btn"
+          class="watchlist-btn add-to-watchlist-btn"
           aria-label="Add ${film.Title} to watchlist"
           data-imdbid="${film.imdbID}"
         >

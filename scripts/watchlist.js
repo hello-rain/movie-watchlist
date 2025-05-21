@@ -13,6 +13,9 @@ function init() {
 }
 
 // 2. Main handler/controller functions
+function removeFromWatchlist(e) {
+  console.log(e.target.getAttribute("data-imdbid"));
+}
 
 // 3. Rendering/UI functions
 
@@ -92,7 +95,7 @@ function generateFilmCardHTML(film) {
         <span>${film.Genre}</span>
         <button
           type="button"
-          class="watchlist-btn"
+          class="watchlist-btn remove-from-watchlist-btn"
           aria-label="Remove ${film.Title} to watchlist"
           data-imdbid="${film.imdbID}"
         >
