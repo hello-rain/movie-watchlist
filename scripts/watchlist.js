@@ -60,7 +60,7 @@ function renderFullPlot(e) {
 async function fetchFilmDetail(imdbID) {
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=efde29a&i&i=${imdbID}`
+      `https://www.omdbapi.com/?apikey=efde29a&i&i=${imdbID}`
     );
     if (!response.ok) {
       const message = "Network response was not ok";

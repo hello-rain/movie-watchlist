@@ -86,7 +86,7 @@ async function fetchFilms(filmInput) {
   try {
     // Make a request to the OMDB API with the search query
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=efde29a&s=${filmInput}`
+      `https://www.omdbapi.com/?apikey=efde29a&s=${filmInput}`
     );
     if (!response.ok) {
       const message = "Network response was not ok";
@@ -116,7 +116,7 @@ async function fetchFilms(filmInput) {
 async function fetchFilmDetail(imdbID) {
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=efde29a&i=${imdbID}`
+      `https://www.omdbapi.com/?apikey=efde29a&i=${imdbID}`
     );
     if (!response.ok) {
       const message = "Network response was not ok";
