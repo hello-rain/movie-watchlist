@@ -98,15 +98,15 @@ async function fetchFilms(filmInput) {
 }
 
 // Fetch full details for a single film by IMDb ID
-async function fetchFilmDetail(filmID) {
+async function fetchFilmDetail(imdbID) {
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=efde29a&i=${filmID}`
+      `http://www.omdbapi.com/?apikey=efde29a&i=${imdbID}`
     );
     if (!response.ok) {
       const message = "Network response was not ok";
       renderError(message);
-      throw new Error("Network response was not ok");
+      throw new Error(message);
     }
 
     const data = await response.json();

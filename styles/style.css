@@ -163,14 +163,12 @@ section .container {
 }
 
 .films-container,
-.films-empty-state,
 .film-details {
   display: flex;
   flex-direction: column;
 }
 
-.films-container,
-.films-empty-state {
+.films-container {
   align-items: center;
   justify-content: center;
   gap: 1em;
