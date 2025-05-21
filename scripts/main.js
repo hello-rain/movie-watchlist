@@ -134,7 +134,7 @@ async function fetchFilmDetail(imdbID) {
 }
 
 function generateFilmCardHTML(film) {
-  const watchlist = JSON.parse(localStorage.getItem("watchlist"));
+  const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
   const inWatchlist = watchlist.includes(film.imdbID);
 
   const charLimit = 130;
