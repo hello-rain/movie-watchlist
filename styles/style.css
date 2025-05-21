@@ -99,6 +99,14 @@ body {
   color: var(--clr-neutral-100);
 }
 
+.watchlist-container {
+  height: 100%;
+}
+
+.watchlist-container .nav-wrapper {
+  padding-top: 0;
+}
+
 .nav-heading {
   font-weight: var(--fw-extra-bold);
   font-size: var(--fs-500);
