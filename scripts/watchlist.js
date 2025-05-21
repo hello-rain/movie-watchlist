@@ -14,11 +14,14 @@ function init() {
 
 // 2. Main handler/controller functions
 function removeFromWatchlist(e) {
-  console.log(e.target.getAttribute("data-imdbid"));
+  const imdbID = e.target.getAttribute("data-imdbid");
+  let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+  watchlist = watchlist.filter((id) => id != imdbID);
+  localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  renderWatchlist();
 }
 
 // 3. Rendering/UI functions
-
 async function renderWatchlist() {
   const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
   const filmsContainer = document.querySelector(".films-container");

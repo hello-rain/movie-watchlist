@@ -36,7 +36,7 @@ function addToWatchlist(e) {
 }
 
 // 3. Rendering/UI functions
-// Display detailed film information
+// Display films based on user search input
 async function renderFilms(films) {
   // Fetch details for all films
   const filmDetails = await Promise.all(
