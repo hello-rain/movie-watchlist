@@ -22,17 +22,39 @@ async function renderWatchlist() {
         </a>
     `;
   } else {
-    // Fetch film details
+    // Fetch details for all films in the watchlist
     const filmDetails = await Promise.all(
       watchlist.map((imdbID) => fetchFilmDetail(imdbID))
     );
 
+    // Generate HTML for each film in the watchlist
     filmsContainer.innerHTML = filmDetails
       .map((film) => generateFilmCardHTML(film))
       .join("");
 
-    console.log(filmDetails);
     // Render film details
+  }
+}
+
+// 4. Helper/utility functions
+// Fetch full details for a single film by IMDb ID
+async function fetchFilmDetail(imdbID) {
+  try {
+    const response = await fetch(
+      `http://www.omdbapi.com/?apikey=efde29a&i&i=${imdbID}`
+    );
+    if (!response.ok) {
+      const message = "Network response was not ok";
+      renderError(message);
+      throw new Error(message);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    const message = "Error fetching data";
+    renderError(message);
+    console.log(error);
   }
 }
 
