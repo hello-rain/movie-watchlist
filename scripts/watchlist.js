@@ -2,6 +2,14 @@
 
 function init() {
   renderWatchlist();
+
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("read-more-btn")) {
+      renderFullPlot(e);
+    } else if (e.target.classList.contains("remove-from-watchlist-btn")) {
+      removeFromWatchlist(e);
+    }
+  });
 }
 
 // 2. Main handler/controller functions
@@ -31,8 +39,13 @@ async function renderWatchlist() {
     filmsContainer.innerHTML = filmDetails
       .map((film) => generateFilmCardHTML(film))
       .join("");
+  }
+}
 
-    // Render film details
+function renderFullPlot(e) {
+  const plotEl = e.target.closest(".film-plot");
+  if (plotEl) {
+    plotEl.textContent = plotEl.getAttribute("data-fullplot");
   }
 }
 
@@ -58,4 +71,47 @@ async function fetchFilmDetail(imdbID) {
   }
 }
 
+function generateFilmCardHTML(film) {
+  const charLimit = 130;
+  const isLong = film.Plot.length > charLimit;
+  const shortPlot = isLong ? film.Plot.slice(0, charLimit) + "..." : film.Plot;
+
+  return `
+  <div class="film">
+    <img src="${film.Poster}" alt="${film.Title} poster" class="film-poster"/>
+    <div class="film-details">
+      <div class="film-header">
+        <h3 class="film-title">${film.Title}</h3>
+        <span>
+        <img src="assets/icons/rating.svg">
+        ${film.imdbRating}
+        </span>
+      </div>
+      <div class="film-meta-group">
+        <span>${film.Runtime}</span>
+        <span>${film.Genre}</span>
+        <button
+          type="button"
+          class="watchlist-btn"
+          aria-label="Remove ${film.Title} to watchlist"
+          data-imdbid="${film.imdbID}"
+        >
+          <span aria-hidden="true">
+            <img src="assets/icons/watchlist-remove.svg">
+          </span>
+          Remove
+        </button>
+      </div>
+      <p class="film-plot" data-fullplot="${film.Plot.replace(/"/g, "&quot;")}">
+      ${shortPlot}
+      ${
+        isLong
+          ? `<button class="read-more-btn" type="button">Read more</button> `
+          : ""
+      }
+      </p>
+    </div>
+  </div>
+`;
+}
 init();

@@ -220,7 +220,7 @@ section .container {
   font-size: var(--fs-100);
 }
 
-.add-to-watchlist-btn {
+.watchlist-btn {
   display: flex;
   gap: 0.5em;
   border: none;
@@ -232,7 +232,7 @@ section .container {
   background: none;
 }
 
-.add-to-watchlist-btn,
+.watchlist-btn,
 .read-more-btn:hover {
   cursor: pointer;
 }
