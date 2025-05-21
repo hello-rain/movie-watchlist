@@ -1,3 +1,6 @@
+// 0. Global variables
+let currentFilms = [];
+
 // 1. Event listeners / entry point
 
 function init() {
@@ -10,6 +13,8 @@ function init() {
       renderFullPlot(e);
     } else if (e.target.classList.contains("add-to-watchlist-btn")) {
       addToWatchlist(e);
+    } else if (e.target.classList.contains("remove-from-watchlist-btn")) {
+      removeFromWatchlist(e);
     }
   });
 }
@@ -32,7 +37,16 @@ function addToWatchlist(e) {
   if (!watchlist.includes(imdbID)) {
     watchlist.push(imdbID);
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    renderFilms(currentFilms);
   }
+}
+
+function removeFromWatchlist(e) {
+  const imdbID = e.target.getAttribute("data-imdbid");
+  let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+  watchlist = watchlist.filter((id) => id != imdbID);
+  localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  renderFilms(currentFilms);
 }
 
 // 3. Rendering/UI functions
@@ -89,6 +103,7 @@ async function fetchFilms(filmInput) {
       return;
     }
     // Render the list of films if results are found
+    currentFilms = data.Search;
     renderFilms(data.Search);
   } catch (error) {
     const message = "Error fetching data.";
@@ -119,6 +134,9 @@ async function fetchFilmDetail(imdbID) {
 }
 
 function generateFilmCardHTML(film) {
+  const watchlist = JSON.parse(localStorage.getItem("watchlist"));
+  const inWatchlist = watchlist.includes(film.imdbID);
+
   const charLimit = 130;
   const isLong = film.Plot.length > charLimit;
   const shortPlot = isLong ? film.Plot.slice(0, charLimit) + "..." : film.Plot;
@@ -137,17 +155,34 @@ function generateFilmCardHTML(film) {
       <div class="film-meta-group">
         <span>${film.Runtime}</span>
         <span>${film.Genre}</span>
-        <button
-          type="button"
-          class="watchlist-btn add-to-watchlist-btn"
-          aria-label="Add ${film.Title} to watchlist"
-          data-imdbid="${film.imdbID}"
-        >
-          <span aria-hidden="true">
-            <img src="assets/icons/watchlist-add.svg">
-          </span>
-          Watchlist
-        </button>
+
+        ${
+          inWatchlist
+            ? `<button
+                type="button"
+                class="watchlist-btn remove-from-watchlist-btn"
+                aria-label="Remove ${film.Title} from watchlist"
+                data-imdbid="${film.imdbID}"
+              >
+                <span aria-hidden="true">
+                  <img src="assets/icons/watchlist-remove.svg">
+                </span>
+                Remove
+              </button>`
+            : `<button
+                type="button"
+                class="watchlist-btn add-to-watchlist-btn"
+                aria-label="Add ${film.Title} to watchlist"
+                data-imdbid="${film.imdbID}"
+              >
+                <span aria-hidden="true">
+                  <img src="assets/icons/watchlist-add.svg">
+                </span>
+                Watchlist
+              </button>`
+        }
+
+
       </div>
       <p class="film-plot" data-fullplot="${film.Plot.replace(/"/g, "&quot;")}">
       ${shortPlot}
